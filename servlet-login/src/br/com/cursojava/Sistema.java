@@ -1,6 +1,7 @@
 package br.com.cursojava;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,20 +16,22 @@ public class Sistema extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String login = request.getParameter("login");
+		Usuario user = (Usuario) request.getAttribute("usuario");
 
 		StringBuilder html = new StringBuilder();
 		
-		html.append("<!DOCTYPE html><html><head>"); 
-		html.append("<meta charset=\"ISO-8859-1\">"); 
-		html.append("<title>Bem Vindo</title>"); 
+		html.append("<!DOCTYPE html><html><head>");
+		html.append("<meta charset=\"ISO-8859-1\">");
+		html.append("<title>Bem Vindo</title>");
 		html.append("</head><body>");
 		html.append("<h1>Bem Vindo ");
-		html.append(login);
+		html.append(user.getNome());
 		html.append(" !</h1>");
 		html.append("<h3>Esta é a página principal do sistema</h3>");
 		html.append("<p>");
