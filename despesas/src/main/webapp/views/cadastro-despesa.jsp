@@ -1,14 +1,21 @@
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8" />
 <title>Cadastro de Despesa</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
 </head>
 <body>
 
 	<nav class="navbar bg-light navbar-light"></nav>
+
+	<c:if test="${!empty mensagem}">
+		<div class="alert alert-success">
+			<span>${mensagem}</span>
+		</div>
+	</c:if>
 
 	<form:form class="form-horizontal" method="post" action="/despesa/salvar" modelAttribute="despesa">
 		<div class="card">
@@ -63,7 +70,7 @@
 			</div>
 		</div>
 	</form:form>
-	<script src="/js/bootstrap.min.js"></script>
-	<script src="/js/jquery-3.5.1.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/jquery-3.5.1.min.js"></script>
 </body>
 </html>
