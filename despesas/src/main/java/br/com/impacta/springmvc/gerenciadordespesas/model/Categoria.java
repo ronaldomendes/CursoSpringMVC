@@ -1,7 +1,5 @@
 package br.com.impacta.springmvc.gerenciadordespesas.model;
 
-import java.util.Arrays;
-
 public enum Categoria {
     ALIMENTACAO("Alimentação"),
     CUIDADOS_PESSOAIS("Cuidados pessoais"),

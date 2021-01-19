@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <head>
     <meta charset="utf-8"/>
     <title>Listagem de Despesas</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 </head>
 <body>
@@ -16,7 +17,10 @@
     <div class="card-header">
         <div class="clearfix">
             <h4 class="card-title">Listagem de Despesas</h4>
-            <a class="float-right btn btn-outline-primary" href="/despesas/form">Nova Despesa</a>
+            <a class="btn btn-link float-right" href="/logout">Logout</a>
+            <sec:authorize access="hasRole('MASTER')">
+                <a class="float-right btn btn-outline-primary" href="/despesas/form">Nova Despesa</a>
+            </sec:authorize>
         </div>
     </div>
 
@@ -34,7 +38,6 @@
         </form>
 
         <table class="table table-bordered table-striped">
-            <c:forEach items="${despesas}" var="despesa">
             <thead>
             <tr>
                 <th class="text-center">#</th>
@@ -47,6 +50,7 @@
             </tr>
             </thead>
             <tbody>
+            <c:forEach items="${despesas}" var="despesa">
                 <tr>
                     <td class="text-center">${despesa.id}</td>
                     <td class="text-left">${despesa.descricao}</td>
@@ -102,8 +106,8 @@
         </div>
     </div>
 </div>
-<script src="../js/jquery-3.5.1.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/despesas.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/despesas.js"></script>
 </body>
 </html>

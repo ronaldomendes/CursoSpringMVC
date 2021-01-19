@@ -27,6 +27,7 @@
         <div class="card-header">
             <div class="clearfix">
                 <h4 class="card-title">Nova Despesa</h4>
+                <a class="btn btn-link float-right" href="/logout">Logout</a>
                 <a class="float-right btn btn-outline-primary" href="/despesas">Listar Despesas</a>
             </div>
         </div>
