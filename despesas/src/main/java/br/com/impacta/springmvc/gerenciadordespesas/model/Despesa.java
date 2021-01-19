@@ -34,7 +34,7 @@ public class Despesa implements Serializable {
     private LocalDate data;
 
     @NotNull(message = "O valor é obrigatório")
-    @DecimalMin(value = "1.00",message = "O valor não deve ser menor que 1 real")
+    @DecimalMin(value = "0.5",message = "O valor não deve ser menor que 1 real")
     @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor;
     private String observacoes;
