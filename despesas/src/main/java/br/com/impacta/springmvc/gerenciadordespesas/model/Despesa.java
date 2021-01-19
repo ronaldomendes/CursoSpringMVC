@@ -4,6 +4,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,15 +21,20 @@ public class Despesa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty(message = "A descrição é obrigatória")
     private String descricao;
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
+    @NotNull(message = "A data é obrigatória")
     @Column(columnDefinition = "DATE")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate data;
 
+    @NotNull(message = "O valor é obrigatório")
+    @DecimalMin(value = "1.00",message = "O valor não deve ser menor que 1 real")
     @NumberFormat(pattern = "#,##0.00")
     private BigDecimal valor;
     private String observacoes;

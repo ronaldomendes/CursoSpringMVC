@@ -5,12 +5,16 @@ import br.com.impacta.springmvc.gerenciadordespesas.repository.DespesaRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
-@RequestMapping(value = "/despesa")
+@RequestMapping(value = "/despesas")
 public class DespesaController {
 
     @Autowired
@@ -23,12 +27,21 @@ public class DespesaController {
     }
 
     @RequestMapping(value = "/salvar")
-    public ModelAndView registra(@ModelAttribute Despesa despesa) {
+    public ModelAndView registra(@ModelAttribute Despesa despesa, Errors errors) {
         ModelAndView mv = new ModelAndView("cadastro-despesa");
-        repository.save(despesa);
 
+        if (errors.hasErrors()) return mv;
+
+        repository.save(despesa);
         mv.addObject("mensagem", "Despesa salva com sucesso");
-        mv.addObject("despesa", new Despesa());
+        return mv;
+    }
+
+    @GetMapping()
+    public ModelAndView despesas() {
+        List<Despesa> listaDespesas = repository.findAll();
+        ModelAndView mv = new ModelAndView("listagem-despesas");
+        mv.addObject("despesas", listaDespesas);
         return mv;
     }
 }
