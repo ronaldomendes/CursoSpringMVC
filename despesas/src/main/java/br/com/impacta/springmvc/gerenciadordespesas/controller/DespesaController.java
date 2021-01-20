@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping(value = "/despesas")
 public class DespesaController {
 
-    @Autowired
     private DespesaRepository repository;
+
+    @Autowired
+    public void setRepository(DespesaRepository repository) {
+        this.repository = repository;
+    }
 
     @RequestMapping(value = "/form")
     public String exibeCadastro(Model model) {

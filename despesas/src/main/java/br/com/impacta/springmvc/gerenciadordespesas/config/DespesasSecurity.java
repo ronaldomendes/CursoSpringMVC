@@ -12,8 +12,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class DespesasSecurity extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private PasswordEncoder encoder;
+
+    @Autowired
+    public void setEncoder(PasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
 
     private static final String MASTER = "MASTER";
     private static final String CONVIDADO = "CONVIDADO";
@@ -24,6 +28,7 @@ public class DespesasSecurity extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .antMatchers("/categorias/**").permitAll()
                 .antMatchers("/despesas/form").hasRole(MASTER)
                 .antMatchers("/despesas/**").hasAnyRole(MASTER, CONVIDADO)

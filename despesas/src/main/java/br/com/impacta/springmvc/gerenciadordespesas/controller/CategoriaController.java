@@ -19,7 +19,7 @@ public class CategoriaController {
     }
 
     @GetMapping(value = "/todas")
-    public List<Categoria> getAllCategoria() {
+    public List<Categoria> getAllCategorias() {
         return Arrays.asList(Categoria.values());
     }
 }
