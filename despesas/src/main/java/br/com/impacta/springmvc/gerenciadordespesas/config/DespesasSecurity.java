@@ -24,11 +24,11 @@ public class DespesasSecurity extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/categorias/**").permitAll()
                 .antMatchers("/despesas/form").hasRole(MASTER)
                 .antMatchers("/despesas/**").hasAnyRole(MASTER, CONVIDADO)
-                .and().formLogin();
-
-        http.logout().logoutSuccessUrl("/despesas");
+                .and().formLogin()
+                .and().logout().logoutSuccessUrl("/despesas");
     }
 
     @Override
