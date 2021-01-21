@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CotacaoController {
 
     @RequestMapping(value = "cotacao/form")
-    public String exibeCadastro(Model model) {
+    public String exibeFormCotacao(Model model) {
         model.addAttribute("cotacao", new Cotacao());
         return "exibe-cotacao";
     }
@@ -25,8 +25,8 @@ public class CotacaoController {
         ModelAndView mv = new ModelAndView("exibe-cotacao");
 
         RestTemplate template = new RestTemplate();
-        String url = "https://economia.awesomeapi.com.br";
-        Cotacao[] cotacoes = template.getForObject(url + "/" + cotacao.getMoeda().getId(), Cotacao[].class);
+        String url = "https://economia.awesomeapi.com.br/";
+        Cotacao[] cotacoes = template.getForObject(url + cotacao.getMoeda().getId(), Cotacao[].class);
 
         if (cotacoes.length > 0) mv.addObject("cotacao", cotacoes[0]);
 
