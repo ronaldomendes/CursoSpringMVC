@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -29,7 +30,7 @@ public class DespesaController {
     }
 
     @RequestMapping(value = "/salvar")
-    public ModelAndView registra(@ModelAttribute Despesa despesa, Errors errors) {
+    public ModelAndView registra(@Valid @ModelAttribute Despesa despesa, Errors errors) {
         ModelAndView mv = new ModelAndView("cadastro-despesa");
 
         if (errors.hasErrors()) return mv;
