@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 @Controller
@@ -23,7 +24,7 @@ public class CepController {
     }
 
     @RequestMapping(value = "/util/consulta")
-    public ModelAndView getCep(@ModelAttribute Cep cep) throws JsonMappingException, JsonProcessingException {
+    public ModelAndView getCep(@Valid @ModelAttribute Cep cep) throws JsonMappingException, JsonProcessingException {
         ModelAndView mv = new ModelAndView("exibe-cep");
 
         RestTemplate template = new RestTemplate();

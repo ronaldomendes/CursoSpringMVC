@@ -1,16 +1,14 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <head>
     <meta charset="utf-8"/>
     <title>Cadastro de Despesa</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <style>
-        span.error {color: red;}
-    </style>
+    <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap-datepicker.standalone.min.css" />
+    <link rel="stylesheet" type="text/css" href="${context}/css/style.css"/>
 </head>
 <body>
 
@@ -22,13 +20,13 @@
     </div>
 </c:if>
 
-<form:form class="form-horizontal" method="post" action="/despesas/salvar" modelAttribute="despesa">
+<form:form class="form-horizontal" method="post" action="${context}/despesas/salvar" modelAttribute="despesa">
     <div class="card">
         <div class="card-header">
             <div class="clearfix">
                 <h4 class="card-title">Nova Despesa</h4>
-                <a class="btn btn-link float-right" href="/logout">Logout</a>
-                <a class="float-right btn btn-outline-primary" href="/despesas">Listar Despesas</a>
+                <a class="btn btn-link float-right" href="${context}/logout">Logout</a>
+                <a class="float-right btn btn-outline-primary" href="${context}/despesas">Listar Despesas</a>
             </div>
         </div>
         <div class="card-body">
@@ -88,11 +86,11 @@
         </div>
     </div>
 </form:form>
-<script src="/js/jquery-3.5.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
-<script src="/js/jquery.maskMoney.min.js"></script>
-<script src="/js/despesas.js"></script>
+<script src="${context}/js/jquery-3.5.1.min.js"></script>
+<script src="${context}/js/bootstrap.min.js"></script>
+<script src="${context}/js/bootstrap-datepicker.min.js"></script>
+<script src="${context}/js/bootstrap-datepicker.pt-BR.min.js"></script>
+<script src="${context}/js/jquery.maskMoney.min.js"></script>
+<script src="${context}/js/despesas.js"></script>
 </body>
 </html>

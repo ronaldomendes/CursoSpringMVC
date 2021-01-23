@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<c:set var="context" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <head>
     <meta charset="utf-8"/>
     <title>Listagem de Despesas</title>
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="${context}/css/style.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 </head>
 <body>
@@ -17,16 +18,16 @@
     <div class="card-header">
         <div class="clearfix">
             <h4 class="card-title">Listagem de Despesas</h4>
-            <a class="btn btn-link float-right" href="/logout">Logout</a>
+            <a class="btn btn-link float-right" href="${context}/logout">Logout</a>
             <sec:authorize access="hasRole('MASTER')">
-                <a class="float-right btn btn-outline-primary" href="/despesas/form">Nova Despesa</a>
+                <a class="float-right btn btn-outline-primary" href="${context}/despesas/form">Nova Despesa</a>
             </sec:authorize>
         </div>
     </div>
 
     <div class="card-body">
 
-        <form method="GET" class="form-horizontal" action="/despesas">
+        <form method="GET" class="form-horizontal" action="${context}/despesas">
             <div class="form-group">
                 <div class="col-sm-4">
                     <div class="input-group">
@@ -68,7 +69,7 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="/despesas/form/${despesa.id}" class="btn btn-link btn-xs">
+                        <a href="${context}/despesas/form/${despesa.id}" class="btn btn-link btn-xs">
                             <span class="material-icons">edit</span>
                         </a>
                     </td>
@@ -76,8 +77,7 @@
             </c:forEach>
             <c:if test="${despesas.isEmpty()}">
                 <tr>
-                    <td class="text-center" colspan="7"><i>NENHUMA DESPESA
-                        FOI ENCONTRADA.</i></td>
+                    <td class="text-center" colspan="7"><i>NENHUMA DESPESA FOI ENCONTRADA.</i></td>
                 </tr>
             </c:if>
             </tbody>
@@ -86,7 +86,7 @@
     <div class="modal fade" id="confirmaRemocaoModal" tabindex="-1"
          data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
-            <form action="/despesas" method="POST">
+            <form action="${context}/despesas" method="POST">
                 <input type="hidden" name="_method" value="DELETE" />
                 <div class="modal-content">
                     <div class="modal-header">
@@ -106,8 +106,8 @@
         </div>
     </div>
 </div>
-<script src="/js/jquery-3.5.1.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/despesas.js"></script>
+<script src="${context}/js/jquery-3.5.1.min.js"></script>
+<script src="${context}/js/bootstrap.min.js"></script>
+<script src="${context}/js/despesas.js"></script>
 </body>
 </html>
